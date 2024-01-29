@@ -22,6 +22,9 @@ import ScratchCard from './ScratchCard/ScratchCard';
 import ColorSwatch from './colorSwatch';
 import Gallery from './Gallery';
 import ParallaxEffect from './ParallaxEffect';
+import Header from './src/components/Header';
+import SwipeDoc from './SwipeDoc';
+import Transformation from './Transformation';
 
 const data = [
   {
@@ -72,6 +75,14 @@ const data = [
     id: 12,
     text: 'ParallaxEffect',
   },
+  {
+    id: 13,
+    text: 'SwipeDoc',
+  },
+  {
+    id: 14,
+    text: '3dTransformation',
+  },
 ];
 
 function App(): React.JSX.Element {
@@ -104,31 +115,42 @@ function App(): React.JSX.Element {
   );
 }
 const ListDispItem = memo(
-  ({onPress, text}: {onPress: () => void; text: string}) => (
+  ({
+    onPress,
+    text,
+    color,
+  }: {
+    onPress: () => void;
+    text: string;
+    color: string;
+  }) => (
     <Pressable onPress={onPress} style={styles.button}>
-      <Text style={styles.buttonTxt}>{text}</Text>
+      <Text style={[styles.buttonTxt, {color}]}>{text}</Text>
     </Pressable>
   ),
 );
 
-const ListDisp = memo(({onPress}: {onPress: (id: number) => void}) => (
-  <View>
-    <StatusBar backgroundColor={'#000'} barStyle={'light-content'} />
-    <View style={styles.header}></View>
-    <FlatList
-      data={data}
-      keyExtractor={item => item.id.toString()}
-      ItemSeparatorComponent={() => <View style={styles.seperator} />}
-      renderItem={({item, index}) => (
-        <ListDispItem
-          key={index}
-          onPress={() => onPress(item.id)}
-          text={item.text}
-        />
-      )}
-    />
-  </View>
-));
+const ListDisp = memo(({onPress}: {onPress: (id: number) => void}) => {
+  const [darkMode, setDarkMode] = useState(false);
+  return (
+    <View style={{flex: 1, backgroundColor: darkMode ? '#000' : '#fff'}}>
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <FlatList
+        data={data}
+        keyExtractor={item => item.id.toString()}
+        ItemSeparatorComponent={() => <View style={styles.seperator} />}
+        renderItem={({item, index}) => (
+          <ListDispItem
+            key={index}
+            onPress={() => onPress(item.id)}
+            text={item.text}
+            color={darkMode ? '#dcdcdc' : '#212121'}
+          />
+        )}
+      />
+    </View>
+  );
+});
 
 const DisplayView = memo(
   ({
@@ -165,6 +187,10 @@ const DisplayView = memo(
         return <Gallery />;
       case 12:
         return <ParallaxEffect />;
+      case 13:
+        return <SwipeDoc />;
+      case 14:
+        return <Transformation />;
       default:
         return <ListDisp onPress={onPress} />;
     }
@@ -174,27 +200,17 @@ const DisplayView = memo(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
   },
-  header: {
-    height: 60,
-    borderBottomWidth: 1,
-    elevation: 4,
-    backgroundColor: '#000',
-    marginBottom: 10,
-    borderColor: '#eeeeee',
-  },
+
   seperator: {
     borderBottomWidth: 0.9,
     borderColor: '#eeeeee',
   },
   button: {
-    backgroundColor: '#000',
     paddingHorizontal: 10,
     paddingVertical: 15,
   },
   buttonTxt: {
-    color: '#dcdcdc',
     fontSize: 18,
   },
 });
