@@ -25,6 +25,8 @@ import ParallaxEffect from './ParallaxEffect';
 import Header from './src/components/Header';
 import SwipeDoc from './SwipeDoc';
 import Transformation from './Transformation';
+import GridMagnify from './GridMagnify';
+import Metaball from './Metaball';
 
 const data = [
   {
@@ -82,6 +84,14 @@ const data = [
   {
     id: 14,
     text: '3dTransformation',
+  },
+  {
+    id: 15,
+    text: 'Grid Magnify',
+  },
+  {
+    id: 16,
+    text: 'Metaball Animation',
   },
 ];
 
@@ -191,6 +201,10 @@ const DisplayView = memo(
         return <SwipeDoc />;
       case 14:
         return <Transformation />;
+      case 15:
+        return <GridMagnify />;
+      case 16:
+        return <Metaball />;
       default:
         return <ListDisp onPress={onPress} />;
     }
