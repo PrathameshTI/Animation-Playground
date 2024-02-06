@@ -27,6 +27,7 @@ import SwipeDoc from './SwipeDoc';
 import Transformation from './Transformation';
 import GridMagnify from './GridMagnify';
 import Metaball from './Metaball';
+import DancingLoader from './DancingLoader';
 
 const data = [
   {
@@ -92,6 +93,10 @@ const data = [
   {
     id: 16,
     text: 'Metaball Animation',
+  },
+  {
+    id: 17,
+    text: 'DancingLoader',
   },
 ];
 
@@ -205,6 +210,8 @@ const DisplayView = memo(
         return <GridMagnify />;
       case 16:
         return <Metaball />;
+      case 17:
+        return <DancingLoader />;
       default:
         return <ListDisp onPress={onPress} />;
     }

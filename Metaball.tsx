@@ -15,7 +15,7 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
-import {useSharedValue} from 'react-native-reanimated';
+import {useSharedValue, withTiming} from 'react-native-reanimated';
 
 const RADIUS = 80;
 
@@ -24,10 +24,13 @@ export default function () {
 
   const cx = useSharedValue(windowWidth / 2);
   const cy = useSharedValue(windowHeight / 2);
+  const newRadius = useSharedValue(RADIUS);
   const gesture = Gesture.Pan()
     .onBegin(e => {
-      cx.value = e.x;
-      cy.value = e.y;
+      cx.value = withTiming(e.x);
+      cy.value = withTiming(e.y);
+      newRadius.value = withTiming(RADIUS + 10);
+      console.log('onstart');
       // translateX.value += e.changeX;
     })
     .onChange(e => {
@@ -40,6 +43,10 @@ export default function () {
       //   velocity: e.velocityX,
       //   clamp: [leftBoundary, rightBoundary],
       // });
+    })
+    .onFinalize(() => {
+      console.log('onend');
+      newRadius.value = withTiming(RADIUS);
     });
 
   const layer = useMemo(() => {
@@ -79,7 +86,7 @@ export default function () {
               backgroundColor: '#000',
             }}>
             <Group layer={layer}>
-              <Circle cx={cx} cy={cy} r={RADIUS} color={'blue'}>
+              <Circle cx={cx} cy={cy} r={newRadius} color={'blue'}>
                 <SweepGradient
                   c={vec(0, 0)}
                   colors={['magenta', 'cyan', 'magenta']}

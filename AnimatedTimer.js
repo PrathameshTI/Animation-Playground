@@ -1,6 +1,3 @@
-// Inspiration: https://dribbble.com/shots/2343572-Countdown-timer
-// 👉 Output of the code: https://twitter.com/mironcatalin/status/1321856493382238208
-
 import * as React from 'react';
 import {
   Vibration,
