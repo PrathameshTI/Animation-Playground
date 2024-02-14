@@ -35,11 +35,11 @@ export default function () {
     <View style={styles.container}>
       <Animated.Image
         style={backgroundStyle}
-        source={require('./assets/background.jpg')}
+        source={require('../../assets/background.jpg')}
       />
       <Animated.Image
         style={[styles.foreground, foregroundStyle]}
-        source={require('./assets/foreground.png')}
+        source={require('../../assets/foreground.png')}
       />
       <Text style={styles.text}>Visit Ireland</Text>
     </View>

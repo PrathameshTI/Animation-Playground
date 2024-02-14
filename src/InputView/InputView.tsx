@@ -15,7 +15,7 @@ import Animated, {
   useDerivedValue,
   withSpring,
 } from 'react-native-reanimated';
-import {DATA} from './DATA';
+import {DATA} from '../../DATA';
 const {height, width} = Dimensions.get('screen');
 
 export default function () {

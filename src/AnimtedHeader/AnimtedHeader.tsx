@@ -16,7 +16,7 @@ import Animated, {
   withTiming,
   Extrapolation,
 } from 'react-native-reanimated';
-import {DATA} from './DATA';
+import {DATA} from '../../DATA';
 import {MotiView} from 'moti';
 import {
   Gesture,
@@ -29,7 +29,7 @@ import { useScrollToTop } from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 const BIG_HEADER = 140;
 const SMALL_HEADER = 70;
-const App = () => {
+const AnimtedHeader = () => {
   const scrollRef = useRef(null);
   const scrollY = useSharedValue(0);
   const isScrollAtTop = useSharedValue(true);
@@ -212,4 +212,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default AnimtedHeader;

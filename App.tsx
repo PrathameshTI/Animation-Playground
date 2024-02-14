@@ -9,25 +9,25 @@ import {
   StatusBar,
   StyleSheet,
 } from 'react-native';
-import GalleryView from './GalleryView';
 import {Text, View} from 'moti';
-import ScrollItem from './ScrollItem';
-import InputView from './InputView';
-import WifiLoader from './WifiLoader';
-import AnimatedChat from './AnimatedChat';
-import AnimatedTimer from './AnimatedTimer';
-import BlurFocus from './BlurFocus';
-import AnimtedHeader from './AnimtedHeader';
-import ScratchCard from './ScratchCard/ScratchCard';
-import ColorSwatch from './colorSwatch';
-import Gallery from './Gallery';
-import ParallaxEffect from './ParallaxEffect';
-import Header from './src/components/Header';
-import SwipeDoc from './SwipeDoc';
-import Transformation from './Transformation';
-import GridMagnify from './GridMagnify';
-import Metaball from './Metaball';
-import DancingLoader from './DancingLoader';
+import Header from './components/Header';
+import GalleryView from './src/GalleryView/GalleryView';
+import ScrollItem from './src/ScrollItem/ScrollItem';
+import InputView from './src/InputView/InputView';
+import WifiLoader from './src/WifiLoader/WifiLoader';
+import AnimatedChat from './src/AnimatedChat/AnimatedChat';
+import AnimatedTimer from './src/AnimatedTimer/AnimatedTimer';
+import BlurFocus from './src/BlurFocus/BlurFocus';
+import AnimtedHeader from './src/AnimtedHeader/AnimtedHeader';
+import ScratchCard from './src/ScratchCard/ScratchCard';
+import ColorSwatch from './src/colorSwatch';
+import Gallery from './src/Gallery/Gallery';
+import ParallaxEffect from './src/ParallaxEffect/ParallaxEffect';
+import SwipeDoc from './src/SwipeDoc/SwipeDoc';
+import Transformation from './src/Transformation/Transformation';
+import GridMagnify from './src/GridMagnify/GridMagnify';
+import Metaball from './src/Metaball/Metaball';
+import DancingLoader from './src/DancingLoader/DancingLoader';
 
 const data = [
   {
@@ -146,7 +146,7 @@ const ListDispItem = memo(
 );
 
 const ListDisp = memo(({onPress}: {onPress: (id: number) => void}) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   return (
     <View style={{flex: 1, backgroundColor: darkMode ? '#000' : '#fff'}}>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
