@@ -28,6 +28,7 @@ import Transformation from './src/Transformation/Transformation';
 import GridMagnify from './src/GridMagnify/GridMagnify';
 import Metaball from './src/Metaball/Metaball';
 import DancingLoader from './src/DancingLoader/DancingLoader';
+import MobX from './src/MobX';
 
 const data = [
   {
@@ -97,6 +98,10 @@ const data = [
   {
     id: 17,
     text: 'DancingLoader',
+  },
+  {
+    id: 18,
+    text: 'MobX',
   },
 ];
 
@@ -212,6 +217,8 @@ const DisplayView = memo(
         return <Metaball />;
       case 17:
         return <DancingLoader />;
+      case 18:
+        return <MobX />;
       default:
         return <ListDisp onPress={onPress} />;
     }
