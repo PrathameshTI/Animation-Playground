@@ -1,6 +1,6 @@
 import 'react-native-reanimated';
 import 'react-native-gesture-handler';
-import React, {memo, useEffect, useState} from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import {
   BackHandler,
   FlatList,
@@ -9,7 +9,7 @@ import {
   StatusBar,
   StyleSheet,
 } from 'react-native';
-import {Text, View} from 'moti';
+import { Text, View } from 'moti';
 import Header from './components/Header';
 import GalleryView from './src/GalleryView/GalleryView';
 import ScrollItem from './src/ScrollItem/ScrollItem';
@@ -29,6 +29,9 @@ import GridMagnify from './src/GridMagnify/GridMagnify';
 import Metaball from './src/Metaball/Metaball';
 import DancingLoader from './src/DancingLoader/DancingLoader';
 import MobX from './src/MobX';
+import GraphQL from './src/GraphQL';
+import ReduxCart from './src/Redux Example/ReduxCart';
+import ReduxExample from './src/Redux Example';
 
 const data = [
   {
@@ -103,6 +106,14 @@ const data = [
     id: 18,
     text: 'MobX',
   },
+  {
+    id: 19,
+    text: 'Redux',
+  },
+  {
+    id: 20,
+    text: 'GraphQL'
+  }
 ];
 
 function App(): React.JSX.Element {
@@ -145,21 +156,21 @@ const ListDispItem = memo(
     color: string;
   }) => (
     <Pressable onPress={onPress} style={styles.button}>
-      <Text style={[styles.buttonTxt, {color}]}>{text}</Text>
+      <Text style={[styles.buttonTxt, { color }]}>{text}</Text>
     </Pressable>
   ),
 );
 
-const ListDisp = memo(({onPress}: {onPress: (id: number) => void}) => {
+const ListDisp = memo(({ onPress }: { onPress: (id: number) => void }) => {
   const [darkMode, setDarkMode] = useState(true);
   return (
-    <View style={{flex: 1, backgroundColor: darkMode ? '#000' : '#fff'}}>
+    <View style={{ flex: 1, backgroundColor: darkMode ? '#000' : '#fff' }}>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <FlatList
         data={data}
         keyExtractor={item => item.id.toString()}
         ItemSeparatorComponent={() => <View style={styles.seperator} />}
-        renderItem={({item, index}) => (
+        renderItem={({ item, index }) => (
           <ListDispItem
             key={index}
             onPress={() => onPress(item.id)}
@@ -219,6 +230,10 @@ const DisplayView = memo(
         return <DancingLoader />;
       case 18:
         return <MobX />;
+      case 19:
+        return <ReduxExample />
+      case 20:
+        return <GraphQL />
       default:
         return <ListDisp onPress={onPress} />;
     }
